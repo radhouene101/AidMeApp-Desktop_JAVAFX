@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connexion3a35.gui.Login">
+   <children>
+      <TextField fx:id="tfEmail" layoutX="182.0" layoutY="147.0" prefHeight="26.0" prefWidth="252.0" promptText="Ecrire votre e-mail" />
+      <Button fx:id="btnValider" layoutX="238.0" layoutY="252.0" mnemonicParsing="false" onAction="#login" prefHeight="26.0" prefWidth="124.0" text="connect" />
+      <Text fill="#792a2a" layoutX="213.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Se Connecter!" wrappingWidth="174.47552490234375">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Text>
+      <Text layoutX="285.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+         <font>
+            <Font size="13.0" />
+         </font></Text>
+      <Text layoutX="266.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe" />
+      <Button fx:id="btnAnnuler" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#annuler" text="retour" />
+      <PasswordField fx:id="tfPassword" layoutX="181.0" layoutY="202.0" prefHeight="26.0" prefWidth="252.0" promptText="Ecrire votre mot de passe" />
+      <Hyperlink fx:id="resetPassword" layoutX="255.0" layoutY="228.0" onAction="#resetPassword" text="Reset Password" />
+   </children>
+</AnchorPane>
