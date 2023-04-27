@@ -10,8 +10,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connexion3a35.gui.LoggedInPage">
-   <ListView editable="true" fixedCellSize="3.0" layoutX="-3.0" layoutY="-4.0" prefHeight="407.0" prefWidth="111.0">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connexion3a35.gui.LoggedInPage">
+   <ListView editable="true" fixedCellSize="3.0" layoutX="-3.0" layoutY="-4.0" prefHeight="800.0" prefWidth="211.0">
       <contextMenu>
          <ContextMenu>
             <items>
@@ -20,25 +20,25 @@
          </ContextMenu>
       </contextMenu>
    </ListView>
-   <ImageView fitHeight="85.0" fitWidth="49.0" layoutX="537.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="85.0" fitWidth="49.0" layoutX="934.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../../../../../AIDMELOGO.png" />
       </image>
    </ImageView>
-   <Text layoutX="150.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bonjour chér(e) utilisateur!">
+   <Text layoutX="236.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bonjour chér(e) utilisateur!">
       <font>
-         <Font name="System Bold" size="27.0" />
+         <Font name="System Bold" size="54.0" />
       </font>
    </Text>
-   <Button fx:id="btnProfile" layoutX="5.0" layoutY="10.0" mnemonicParsing="false" onAction="#profile" prefHeight="26.0" prefWidth="99.0" text="Profile">
+   <Button fx:id="btnProfile" layoutX="5.0" layoutY="10.0" mnemonicParsing="false" onAction="#profile" prefHeight="43.0" prefWidth="193.0" text="Profile">
       <font>
          <Font name="System Bold" size="13.0" />
       </font>
    </Button>
-   <Button fx:id="btnLogout" layoutX="5.0" layoutY="373.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="99.0" text="Déconnecter" textFill="#d41111">
+   <Button fx:id="btnLogout" layoutX="14.0" layoutY="742.0" mnemonicParsing="false" onAction="#logout" prefHeight="43.0" prefWidth="180.0" styleClass="logout-button" text="Déconnecter" textFill="#d41111">
       <font>
          <Font name="System Bold" size="12.0" />
       </font>
    </Button>
-   <ListView fx:id="listView" layoutX="188.0" layoutY="96.0" prefHeight="250.0" prefWidth="265.0" />
+   <ListView fx:id="listView" layoutX="227.0" layoutY="157.0" prefHeight="623.0" prefWidth="756.0" />
 </AnchorPane>

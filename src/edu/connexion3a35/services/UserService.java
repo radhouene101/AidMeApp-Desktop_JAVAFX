@@ -19,8 +19,8 @@ public class UserService implements UserCrud {
                 "(`email`, `roles`, `password`, `first_name`, `last_name`, `speciality`, " +
                 "`licence`, `location`, `phone_number`, `date_of_birth`, `status`, `created_at`, " +
                 "`gender`, `last_login`,`age`," +
-                " `is_verified`)" +
-                " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                " `is_verified`, `banned`)" +
+                " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
             MyConnection connex = MyConnection.getInstance();
@@ -41,6 +41,7 @@ public class UserService implements UserCrud {
             pst.setString(14, u.getLastLogin());
             pst.setString(15, u.getAge());
             pst.setInt(16, u.getIsVerified());
+            pst.setString(17, u.getBanned());
 
             System.out.println("User added successfully");
             return pst.executeUpdate() == 1;
@@ -58,7 +59,7 @@ public class UserService implements UserCrud {
             String requete = "UPDATE user SET " +
                     "email = ?, roles = ?, password = ?, first_name = ?, last_name = ?, speciality = ?, " +
                     "licence = ?, location = ?, phone_number = ?, status = ?, " +
-                    "  last_login = ?, age = ?, is_verified = ? , reset_token = ? "+
+                    "  last_login = ?, age = ?, is_verified = ? , reset_token = ? , banned= ? "+
                     "WHERE email = ? ";
 
 
@@ -79,7 +80,8 @@ public class UserService implements UserCrud {
             pst.setString(12, u.getAge());
             pst.setInt(13, u.getIsVerified());
             pst.setString(14, u.getResetToken());
-            pst.setString(15, emailrech);
+            pst.setString(15, u.getBanned());
+            pst.setString(16, emailrech);
 
             System.out.println("User updated successfully  "+ emailrech);
             return pst.executeUpdate() == 1;
@@ -137,6 +139,7 @@ public class UserService implements UserCrud {
                 String lastLogin = rs.getString("last_login");
                 String age = rs.getString("age");
                 int isVerified = rs.getInt("is_verified");
+                String banned = rs.getString("banned");
 
                 // Create a User object and set its attributes
                 User user = new User();
@@ -157,6 +160,7 @@ public class UserService implements UserCrud {
                 user.setLastLogin(lastLogin);
                 user.setAge(age);
                 user.setIsVerified(isVerified);
+                user.setBanned(banned);
                 return user;
             } else {
                 return null; // No user found with given email
@@ -276,6 +280,7 @@ public class UserService implements UserCrud {
                 String lastLogin = rs.getString("last_login");
                 String age = rs.getString("age");
                 int isVerified = rs.getInt("is_verified");
+                String banned = rs.getString("banned");
 
                 // Create a User object and set its attributes
                 User user = new User();
@@ -296,6 +301,7 @@ public class UserService implements UserCrud {
                 user.setLastLogin(lastLogin);
                 user.setAge(age);
                 user.setIsVerified(isVerified);
+                user.setBanned(banned);
                 users.add(user);
             }
             return users;

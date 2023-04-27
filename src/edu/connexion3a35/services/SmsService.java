@@ -25,10 +25,22 @@ public class SmsService {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message message = Message.creator(
                         new com.twilio.type.PhoneNumber("+216"+phone),
-                        new com.twilio.type.PhoneNumber("+16315294030"),
+                        new com.twilio.type.PhoneNumber("+16318835776"),
                         "Dear "+name.toUpperCase()+ " \n\nYour reset password code is :  "+code+"\n\n AidMe Bot")
                 .create();
 
         System.out.println(message.getSid());
     }
+    public void sendSmsBanned(String phone , String name){
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+        Message message = Message.creator(
+                        new com.twilio.type.PhoneNumber("+216"+phone),
+                        new com.twilio.type.PhoneNumber("+16318835776"),
+                        "Dear "+name.toUpperCase()+ " \n\nYour account has been banned for violating our terms of use.\n\n AidMe Bot")
+                .create();
+
+        System.out.println(message.getSid());
+    }
+
+
 }

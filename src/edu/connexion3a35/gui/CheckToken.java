@@ -24,6 +24,9 @@ public class CheckToken {
     private TextField tfCode;
 
     @FXML
+    private  Button btnRetour;
+
+    @FXML
     void redirectToUpdate(ActionEvent event) {
         User user= UserSession.getSession().getUser();
         if(tfCode.getText().equals(user.getResetToken())){
@@ -48,6 +51,12 @@ public class CheckToken {
             alert.show();
         }
 
+    }
+
+    @FXML
+    public void returnBack(){
+        Stage stage = (Stage) btnRetour.getScene().getWindow();
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("login.fxml"));
     }
 
 }

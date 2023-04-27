@@ -31,6 +31,7 @@ public class VerifyAccountInterface  {
         int code = (int) (Math.random() * 9999);
         user.setResetToken(String.valueOf(code));
         us.updateUser(user, user.getEmail());
+        System.out.println(user);
         SmtpEmail smtpEmail = new SmtpEmail();
         String html = EmailSendHtmlMsg.htmlVerifyAccount(user.getFirstName(), code+"", "AIDME");
         smtpEmail.sendEmail(new String[]{user.getEmail()}, "Verify Account", "", html);

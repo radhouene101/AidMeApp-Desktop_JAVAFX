@@ -1,6 +1,9 @@
 package edu.connexion3a35.gui;
 
 import edu.connexion3a35.entities.User;
+import edu.connexion3a35.services.EmailSendHtmlMsg;
+import edu.connexion3a35.services.SmsService;
+import edu.connexion3a35.services.SmtpEmail;
 import edu.connexion3a35.services.UserService;
 import edu.connexion3a35.session.UserSession;
 import javafx.event.ActionEvent;
@@ -9,10 +12,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -62,6 +68,8 @@ public class UserInfoController extends AdminPageController implements Initializ
 
     @FXML
     private Label lbSpeciality;
+    @FXML
+    private  Button btnUnban;
     private Stage previousStage;
     private User user;
 
@@ -105,7 +113,56 @@ public class UserInfoController extends AdminPageController implements Initializ
         stage.show();
     }
 
-    public void bannir(ActionEvent actionEvent) {
+    @FXML
+    public void bannir(ActionEvent actionEvent) throws MessagingException {
+        UserService userService = new UserService();
+        User user = getUser();
+        System.out.println(user);
+        if(  user.getBanned().equals("1")){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION,"User already banned",ButtonType.OK);
+            alert.setTitle("User already banned");
+            alert.setHeaderText("Too Bad ");
+            alert.setContentText("this user "+ getUser().getFirstName()+" already banned");
+            alert.showAndWait();
+        }else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "ban User", ButtonType.OK, ButtonType.CANCEL);
+            alert.setTitle("User banned");
+            alert.setHeaderText("User" + getUser().getEmail());
+            alert.setContentText("User banned");
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.OK) {
+
+                user.setBanned("1");
+                SmtpEmail email = new SmtpEmail();
+                email.sendEmail(new String[]{user.getEmail()}, "account suspension", "", EmailSendHtmlMsg.htmlBanned(user.getFirstName(), "AIDME TEAM"));
+                SmsService smsService = new SmsService();
+                smsService.sendSmsBanned(user.getPhoneNumber(),user.getFirstName()+" "+ user.getLastName());
+                userService.updateUser(user, user.getEmail());
+                System.out.println("User banned" + getUser().getBanned());
+            } else if (alert.getResult() == ButtonType.CANCEL) {
+                alert.close();
+            }
+
+        }
+    }
+    public void unBan(){
+        UserService userService = new UserService();
+        User user = getUser();
+        if(user.getBanned().equals("0")){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION,"This user is not banned",ButtonType.OK);
+            alert.setTitle("this user is already authorized");
+            alert.setHeaderText("user authorized");
+            alert.setContentText("oops this user is already authorized you can't unban an authorized user");
+            alert.showAndWait();
+        }else {
+            user.setBanned("0");
+            userService.updateUser(user,user.getEmail());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION,"User authorize",ButtonType.OK);
+            alert.setTitle("authorized to use the application");
+            alert.setHeaderText("User authorized again");
+            alert.setContentText("the user " + user.getFirstName() + " is authorized to use this app again he's no longer banned");
+            alert.showAndWait();
+        }
     }
 
 
@@ -135,127 +192,7 @@ public class UserInfoController extends AdminPageController implements Initializ
 
     UserSession userSession;
 
-    public Button getBtnBan() {
-        return btnBan;
-    }
-
-    public void setBtnBan(Button btnBan) {
-        this.btnBan = btnBan;
-    }
-
-    public Button getBtnDelete() {
-        return btnDelete;
-    }
-
-    public void setBtnDelete(Button btnDelete) {
-        this.btnDelete = btnDelete;
-    }
-
-    public Label getLbAdresse() {
-        return lbAdresse;
-    }
-
-    public void setLbAdresse(Label lbAdresse) {
-        this.lbAdresse = lbAdresse;
-    }
-
-    public Label getLbAge() {
-        return lbAge;
-    }
-
-    public void setLbAge(Label lbAge) {
-        this.lbAge = lbAge;
-    }
-
-    public Label getLbCreationDate() {
-        return lbCreationDate;
-    }
-
-    public void setLbCreationDate(Label lbCreationDate) {
-        this.lbCreationDate = lbCreationDate;
-    }
-
-    public Label getLbDateOfBirth() {
-        return lbDateOfBirth;
-    }
-
-    public void setLbDateOfBirth(Label lbDateOfBirth) {
-        this.lbDateOfBirth = lbDateOfBirth;
-    }
-
-    public Label getLbEmail() {
-        return lbEmail;
-    }
-
-    public void setLbEmail(Label lbEmail) {
-        this.lbEmail = lbEmail;
-    }
-
-    public Label getLbFirstName() {
-        return lbFirstName;
-    }
-
-    public void setLbFirstName(Label lbFirstName) {
-        this.lbFirstName = lbFirstName;
-    }
-
-    public Label getLbLastName() {
-        return lbLastName;
-    }
-
-    public void setLbLastName(Label lbLastName) {
-        this.lbLastName = lbLastName;
-    }
-
-    public Label getLbLicence() {
-        return lbLicence;
-    }
-
-    public void setLbLicence(Label lbLicence) {
-        this.lbLicence = lbLicence;
-    }
-
-    public Label getLbNumTel() {
-        return lbNumTel;
-    }
-
-    public void setLbNumTel(Label lbNumTel) {
-        this.lbNumTel = lbNumTel;
-    }
-
-    public Label getLbRole() {
-        return lbRole;
-    }
-
-    public void setLbRole(Label lbRole) {
-        this.lbRole = lbRole;
-    }
-
-    public Label getLbSexe() {
-        return lbSexe;
-    }
-
-    public void setLbSexe(Label lbSexe) {
-        this.lbSexe = lbSexe;
-    }
-
-    public Label getLbSpeciality() {
-        return lbSpeciality;
-    }
-
-    public void setLbSpeciality(Label lbSpeciality) {
-        this.lbSpeciality = lbSpeciality;
-    }
-
-    public Button getBtnRetour() {
-        return btnRetour;
-    }
-
-    public void setBtnRetour(Button btnRetour) {
-        this.btnRetour = btnRetour;
-    }
-
-    @Override
+   @Override
     public User getUser() {
         return user;
     }

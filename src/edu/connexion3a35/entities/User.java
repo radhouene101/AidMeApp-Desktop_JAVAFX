@@ -31,7 +31,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String email, String role, String password, String firstName, String lastName, String location, String speciality, String phoneNumber, String image, String licence, Date dateOfBirth, String status, Date createdAt, Date updatedAt, String age, String resetToken, int isVerified, String isBlocked) {
+    public User(int id, String email, String role, String password, String firstName, String lastName, String location, String speciality, String phoneNumber, String image, String licence, Date dateOfBirth, String status, Date createdAt, Date updatedAt, String age, String resetToken, int isVerified, String isBlocked,String banned) {
         this.id = id;
         this.email = email;
         this.role = role;
@@ -51,9 +51,10 @@ public class User {
         this.resetToken = resetToken;
         this.isVerified = isVerified;
         this.isBlocked = isBlocked;
+        this.banned = banned;
     }
 
-    public User(String email, String role, String password, String firstName, String lastName, String location, String speciality, String phoneNumber, String image, String licence, Date dateOfBirth, String status, Date createdAt, Date updatedAt, String age, String resetToken, int isVerified, String isBlocked) {
+    public User(String email, String role, String password, String firstName, String lastName, String location, String speciality, String phoneNumber, String image, String licence, Date dateOfBirth, String status, Date createdAt, Date updatedAt, String age, String resetToken, int isVerified, String isBlocked,String banned) {
         this.email = email;
         this.role = role;
         this.password = password;
@@ -72,8 +73,11 @@ public class User {
         this.resetToken = resetToken;
         this.isVerified = isVerified;
         this.isBlocked = isBlocked;
+        this.banned = banned;
     }
-
+    public User(String banned){
+        this.banned = banned;
+    }
     public int getId() {
         return id;
     }

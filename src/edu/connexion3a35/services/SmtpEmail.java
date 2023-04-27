@@ -25,8 +25,8 @@ public class SmtpEmail {
     public SmtpEmail() throws MessagingException {
         // storing the fromEmail as InternetAddress not String
         this.fromEmail = new InternetAddress("aidme.io.tn@gmail.com");
-
         this.configServerSmtp("aidme.io.tn@gmail.com", "pjbrnycqrolmwtyh");
+
 
         createNewMessage_andAssignSender();
 

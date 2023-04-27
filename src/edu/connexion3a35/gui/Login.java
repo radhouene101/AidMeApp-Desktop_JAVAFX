@@ -38,6 +38,7 @@ public class Login implements Initializable {
         String email = tfEmail.getText();
         String password = tfPassword.getText();
         User user = us.login(email,password);
+        
         if( user!=null && user.getRole().equals("[\"ROLE_ADMIN\"]")){
             System.out.println("ahla");
             UserSession.setSession(user);
@@ -59,8 +60,11 @@ public class Login implements Initializable {
             stage.show();
             return;
         }
-        if(user!=null && (user.getRole().equals("[\"ROLE_USER\"]") || user.getRole().equals("[\"ROLE_DOCTOR\"]") || user.getRole().equals("[\"ROLE_NURSE\"]") )){
+
+
+        if(user!=null &&  user.getBanned().equals("0")&& (user.getRole().equals("[\"ROLE_USER\"]") || user.getRole().equals("[\"ROLE_DOCTOR\"]") || user.getRole().equals("[\"ROLE_NURSE\"]")  )){
             UserSession.setSession(user);
+
             if(user.getIsVerified()!=1){
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Voullez vous confirmer votre compte ?", ButtonType.YES, ButtonType.NO);
                 alert.setTitle("Verifier Votre Compte");
@@ -115,6 +119,13 @@ public class Login implements Initializable {
             }
             System.out.println(user);
 
+        }else if(user!=null   && user.getBanned().equals("1")){
+            System.out.println(" fel login ");
+            Alert alert=new Alert(Alert.AlertType.INFORMATION,"vous êtes banni",ButtonType.OK);
+            alert.setTitle("Banned Alert");
+            alert.setHeaderText("You are Banned");
+            alert.setContentText(user.getFirstName()+" you are banned for further information you should contact our support team on aidme.io.tn@gmail.com");
+            alert.showAndWait();
         }
         else{
             System.out.println("email ou mot de passe incorrect");

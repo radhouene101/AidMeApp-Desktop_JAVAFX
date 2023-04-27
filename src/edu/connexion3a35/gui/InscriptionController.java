@@ -104,6 +104,7 @@ public class InscriptionController implements Initializable {
         user.setGender(USEXE.getValue().toString());
         user.setPhoneNumber(TFUNUMTEL.getText());
         user.setCreatedAt(new Date());
+        user.setBanned("0");
         us.createUser(user);
         System.out.println("saved"+user);
         System.out.println(us.selectAllUsers());
@@ -187,6 +188,7 @@ public class InscriptionController implements Initializable {
         user.setLicence(tfLicence.getText());
         user.setLocation(tfAdress.getText());
         user.setSpeciality(tfSpeciality.getText());
+        user.setBanned("0");
         us.createUser(user);
         System.out.println("saved");
        loadLogin();
@@ -260,6 +262,7 @@ public class InscriptionController implements Initializable {
         user.setGender(USEXE.getValue().toString());
         user.setPhoneNumber(TFUNUMTEL.getText());
         user.setCreatedAt(new Date());
+        user.setBanned("0");
         us.createUser(user);
         System.out.println("saved");
         loadLogin();
