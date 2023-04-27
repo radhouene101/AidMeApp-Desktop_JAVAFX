@@ -5,27 +5,22 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connexion3a35.gui.Home">
+<AnchorPane prefHeight="766.0" prefWidth="1002.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connexion3a35.gui.Home">
    <children>
-      <Text fill="#916464" layoutX="215.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Voulez-vous...">
+      <Text fill="#8f6363" layoutX="392.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AIDME" wrappingWidth="204.966796875">
          <font>
-            <Font size="31.0" />
+            <Font size="63.0" />
          </font>
       </Text>
-      <Button fx:id="connect" layoutX="165.0" layoutY="190.0" mnemonicParsing="false" onAction="#loginPage" text="Se Connecter">
+      <Button fx:id="connect" layoutX="291.0" layoutY="363.0" mnemonicParsing="false" onAction="#loginPage" prefHeight="66.0" prefWidth="173.0" text="Se Connecter">
          <font>
-            <Font name="System Bold" size="16.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
       </Button>
-      <Button fx:id="inscrire" layoutX="347.0" layoutY="190.0" mnemonicParsing="false" onAction="#inscrirePage" prefHeight="38.0" prefWidth="99.0" text="S'inscrire">
+      <Button fx:id="inscrire" layoutX="526.0" layoutY="363.0" mnemonicParsing="false" onAction="#inscrirePage" prefHeight="66.0" prefWidth="174.0" text="S'inscrire">
          <font>
-            <Font name="System Bold" size="16.0" />
+            <Font name="System Bold" size="26.0" />
          </font>
       </Button>
-      <Text fill="#255122" layoutX="304.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ou">
-         <font>
-            <Font name="System Italic" size="18.0" />
-         </font>
-      </Text>
    </children>
 </AnchorPane>

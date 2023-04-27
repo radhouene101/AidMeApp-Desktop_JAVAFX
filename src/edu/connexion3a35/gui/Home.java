@@ -33,6 +33,7 @@ public class Home implements Initializable {
         Login login = loader.getController();
 
         Scene scene = new Scene(root);
+        scene.getStylesheets().add("edu/connexion3a35/gui/css/style.css");
         stage.setScene(scene);
         stage.show();
     }
@@ -47,6 +48,7 @@ public class Home implements Initializable {
                 throw new RuntimeException(e);
             }
             Scene scene = new Scene(root);
+            scene.getStylesheets().add("edu/connexion3a35/gui/css/style.css");
             stage.setScene(scene);
             stage.show();
 

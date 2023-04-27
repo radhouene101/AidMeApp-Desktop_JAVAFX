@@ -20,6 +20,7 @@ public class FirstWindow extends Application {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
             Scene scene = new Scene(root,Color.BLACK);
+            scene.getStylesheets().add("edu/connexion3a35/gui/css/style.css");
             primaryStage.setTitle("s'inscrire!");
             primaryStage.setScene(scene);
             primaryStage.show();

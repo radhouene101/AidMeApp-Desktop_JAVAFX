@@ -45,14 +45,14 @@ public class VerifyAccountInterface  {
     }
 
     @FXML
-    void phoneNumberVerify(ActionEvent event) {
+    void phoneNumberVerify() {
         User user = UserSession.getSession().getUser();
         UserService us = new UserService();
         int code = (int) (Math.random() * 9999);
         user.setResetToken(String.valueOf(code));
         us.updateUser(user, user.getEmail());
         SmsService smsService = new SmsService();
-        smsService.sendSms(user.getPhoneNumber(), "Your verification code is: " + code,user.getFirstName() +"");
+        smsService.sendSms(user.getPhoneNumber(), "Your verification code is: "+code,user.getFirstName());
 
         Stage stage = (Stage) btnPhoneNumber.getScene().getWindow();
         FXMLLoader loader= new FXMLLoader(getClass().getResource("checkTokenVerifyAccount.fxml"));

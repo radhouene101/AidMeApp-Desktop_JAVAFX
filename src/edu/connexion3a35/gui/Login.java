@@ -98,6 +98,20 @@ public class Login implements Initializable {
                     System.out.println("YESS");
                 }
 
+            }else {
+                Stage stage = (Stage) btnValider.getScene().getWindow();
+                FXMLLoader loader= new FXMLLoader(getClass().getResource("loggedInPage.fxml"));
+                Parent root = null;
+                System.out.println(UserSession.getSession().getUser());
+                System.out.println("login USER");
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
             }
             System.out.println(user);
 
